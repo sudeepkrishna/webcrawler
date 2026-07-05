@@ -29,4 +29,8 @@ public class DataStore {
     }
     return books;
   }
+
+  public int getSize() {
+    return minHeap.size();
+  }
 }

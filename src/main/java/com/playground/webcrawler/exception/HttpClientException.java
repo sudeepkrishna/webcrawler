@@ -1,0 +1,7 @@
+package com.playground.webcrawler.exception;
+
+public class HttpClientException extends RuntimeException {
+  public HttpClientException(String message, Throwable cause) {
+    super(message, cause);
+  }
+}
