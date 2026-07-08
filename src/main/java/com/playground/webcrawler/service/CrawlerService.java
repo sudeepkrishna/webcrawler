@@ -3,6 +3,7 @@ package com.playground.webcrawler.service;
 import com.playground.webcrawler.client.WebClient;
 import com.playground.webcrawler.exception.HttpClientException;
 import com.playground.webcrawler.model.Book;
+import com.playground.webcrawler.util.UrlNormaliser;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -88,7 +89,8 @@ public class CrawlerService {
       processBooks(books);
 
       if (!next.isEmpty()) {
-        pagesToVisit.add(addCatalogueIfMissing(next.selectFirst("a").attr("href")));
+        String nextPageUrl = addCatalogueIfMissing(next.selectFirst("a").attr("href"));
+        pagesToVisit.add(UrlNormaliser.normalise(nextPageUrl));
       } else {
         logger.info("Cannot find next element");
       }
