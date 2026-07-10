@@ -10,13 +10,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class UrlNormaliserTest {
 
-  @ParameterizedTest(name = "{0}")
+  @ParameterizedTest
   @MethodSource("normalisableUrls")
   void normalisesUrls(String description, String rawUrl, String normalisedUrl) {
     assertThat(UrlNormaliser.normalise(rawUrl)).isEqualTo(normalisedUrl);
   }
 
-  @ParameterizedTest(name = "{0}")
+  @ParameterizedTest
   @MethodSource("invalidUrls")
   void rejectsInvalidUrls(String description, String rawUrl) {
     assertThatExceptionOfType(IllegalArgumentException.class)
