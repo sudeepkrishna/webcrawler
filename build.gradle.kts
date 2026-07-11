@@ -41,5 +41,6 @@ dependencies {
 }
 
 tasks.withType<Test> {
+	dependsOn("spotlessApply")
 	useJUnitPlatform()
 }

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: webcrawler
+  main:
+    web-application-type: none
+
+crawler:
+  output: crawler-output
+
+book-crawler:
+  host: https://books.toscrape.com/
+  seed-page: index.html
+  max-depth: 100
+  write-to-file-enabled: false
+  top-n: 20

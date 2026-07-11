@@ -2,7 +2,6 @@ package com.playground.webcrawler.client;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.retry.RetryException;
 import org.springframework.core.retry.RetryTemplate;
 import org.springframework.stereotype.Component;
@@ -15,17 +14,13 @@ public class WebClient {
   private final RestClient restClient;
   private final RetryTemplate retryTemplate;
 
-  @Value("${seed.host}")
-  private String host;
-
   public WebClient(RestClient restClient, RetryTemplate retryTemplate) {
     this.restClient = restClient;
     this.retryTemplate = retryTemplate;
   }
 
-  public String sendRequest(String page) throws RetryException {
-
-    return retryTemplate.execute(
-        () -> restClient.get().uri(host + page).retrieve().body(String.class));
+  public String sendRequest(String url) throws RetryException {
+    logger.info("Sending request to {}", url);
+    return retryTemplate.execute(() -> restClient.get().uri(url).retrieve().body(String.class));
   }
 }
